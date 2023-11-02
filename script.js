@@ -47,6 +47,7 @@ function selectOponents() {
   pokemonOponents = [];
   for (let i = 1; i <= 3; i++) {
     let randPokemon = Math.floor(Math.random() * 150);
+    // Metemos al final de la cola de rivales 3 pokemones al azar de la lista
     pokemonOponents.push(pokemonList[randPokemon]);
   }
   console.log(pokemonOponents);
@@ -66,6 +67,7 @@ async function startBattles(pokemonName) {
   }).url;
 
   if (pokemonOponents.length > 0) {
+    // Si la cola esta vacia, descolamos el primer elemento
     let oponent = pokemonOponents.shift();
 
     const oponentPokemon = await fetchPokemon(oponent.url);
