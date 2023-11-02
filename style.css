@@ -86,7 +86,7 @@ html {
       var(--s) var(--s);
 }
 
-@media screen {
+@media screen and (max-width:768px) {
   article {
     margin: 0px;
     width: 100%;
