@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Spline+Sans+Mono:ital,wght@0,400;0,500;1,400&display=swap');
+
+body {
+  font-family: 'Spline Sans Mono', monospace;
+}
+h1 {
+  font-family: 'Spline Sans Regular', monospace;
+}
+
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Spline Sans Regular', monospace;
+  margin-bottom: 10px;
+}
+
+p {
+  text-align: justify;
+}
+
+footer {
+  text-align: center;
+}
+
+article {
+  margin: 0px;
+  width: 50%;
+}
+
+hgroup {
+  margin-bottom: 0px;
+}
+
+table {
+  width: 94%;
+  margin-left: 3%;
+  margin-right: 3%;
+}
+
+details {
+  align-items: center;
+}
+
+main {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+a {
+  text-align: center;
+}
+
+.icon-button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  margin: 0;
+}

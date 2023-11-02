@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Métodos JavaScript</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css"
+    />
+    <link rel="stylesheet" href="./style.css" />
+    <script src="https://kit.fontawesome.com/a41d3240c2.js" crossorigin="anonymous"></script>
+    <script src="./script.js"></script>
+  </head>
+
+  <body onload="load()">
+    <main class="container">
+      <article style="margin-top: 0px">
+        <!-- Titulo y nombre -->
+        <header>
+          <hgroup>
+            <h1>PokeBattle</h1>
+            <a href="https://github.com/xrimsonn">José Antonio Rosales</a>
+          </hgroup>
+        </header>
+
+        <section>
+          <label for="pokemonSelect"><h3>¡Elige un Pokemon!</h3></label>
+          <select id="pokemonSelect"></select>
+          <button class="contrast" onclick="startBattles()">Seleccionar</button>
+        </section>
+
+        <footer>
+          &copy;2023<br />
+          <a class="secondary" target="_blank" href="https://www.instagram.com/antonnn_o/"><i class="fa-brands fa-instagram fa-lg"></i></a>
+          <a class="secondary" target="_blank" href="https://github.com/xrimsonn"><i class="fa-brands fa-github fa-lg"></i></a>
+          <a class="secondary" target="_blank" href="https://www.linkedin.com/in/antonio-rosales-207793263/"><i class="fa-brands fa-linkedin fa-lg"></i></a>
+        </footer>
+
+      </article>
+    </main>
+  </body>
+</html>
