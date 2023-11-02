@@ -54,10 +54,34 @@ a {
   text-align: center;
 }
 
+img {
+  margin: 16px;
+}
+
 .icon-button {
   background: none;
   border: none;
   padding: 0;
   cursor: pointer;
   margin: 0;
+}
+
+.versus {
+  justify-content: center;
+}
+
+html {
+  --s: 100px; /* control the size */
+  --c1: #1f2f3c;
+  --c2: #2a3b49;
+
+  --_s: calc(2 * var(--s)) calc(2 * var(--s));
+  --_g: var(--_s) conic-gradient(at 40% 40%, #0000 75%, var(--c1) 0);
+  --_p: var(--_s) conic-gradient(at 20% 20%, #0000 75%, var(--c2) 0);
+  background: calc(0.9 * var(--s)) calc(0.9 * var(--s)) / var(--_p),
+    calc(-0.1 * var(--s)) calc(-0.1 * var(--s)) / var(--_p),
+    calc(0.7 * var(--s)) calc(0.7 * var(--s)) / var(--_g),
+    calc(-0.3 * var(--s)) calc(-0.3 * var(--s)) / var(--_g),
+    conic-gradient(from 90deg at 20% 20%, var(--c2) 25%, var(--c1) 0) 0 0 /
+      var(--s) var(--s);
 }
