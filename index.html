@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="es" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Métodos JavaScript</title>
+    <title>PokeBattle</title>
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css"
@@ -16,6 +16,7 @@
   <body onload="load()">
     <main class="container">
       <article style="margin-top: 0px">
+
         <!-- Titulo y nombre -->
         <header>
           <hgroup>
@@ -24,12 +25,14 @@
           </hgroup>
         </header>
 
+        <!-- Seccion de batalla -->
         <section>
           <label for="pokemonSelect"><h3>¡Elige un Pokemon!</h3></label>
           <select id="pokemonSelect"></select>
           <button class="contrast" onclick="getPokemon()">Seleccionar</button>
         </section>
         
+        <!-- Footer y contacto -->
         <footer>
           &copy;2023<br />
           <a class="secondary" target="_blank" href="https://www.instagram.com/antonnn_o/"><i class="fa-brands fa-instagram fa-lg"></i></a>
