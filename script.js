@@ -1,6 +1,44 @@
+class Stack {
+  constructor() {
+    this.items = [];
+  }
+
+  push(element) {
+    this.items.push(element);
+  }
+
+  pop() {
+    if (this.items.length === 0) return 'No hay elementos en el stack';
+    return this.items.pop();
+  }
+
+  size() {
+    return this.items.length;
+  }
+}
+
+class Queue {
+  constructor() {
+    this.items = [];
+  }
+
+  enqueue(element) {
+    this.items.push(element);
+  }
+
+  dequeue() {
+    if (this.items.length === 0) return 'No hay elementos en la cola';
+    return this.items.shifts();
+  }
+
+  size() {
+    return this.items.length;
+  }
+}
+
 let url = 'https://pokeapi.co/api/v2/pokemon?offset=0&limit=150';
 let pokemonList = [];
-let pokemonOponents = [];
+let pokemonOponents = new Queue();
 let pokemonName = '';
 let pokemonURL = '';
 
@@ -44,11 +82,11 @@ async function selectPokemon() {
 }
 
 function selectOponents() {
-  pokemonOponents = [];
+  pokemonOponents = new Queue();
   for (let i = 1; i <= 3; i++) {
     let randPokemon = Math.floor(Math.random() * 150);
     // Metemos al final de la cola de rivales 3 pokemones al azar de la lista
-    pokemonOponents.push(pokemonList[randPokemon]);
+    pokemonOponents.enqueue(pokemonList[randPokemon]);
   }
   console.log(pokemonOponents);
 }
@@ -66,9 +104,9 @@ async function startBattles(pokemonName) {
     return pokemon.name === pokemonName.toLowerCase();
   }).url;
 
-  if (pokemonOponents.length > 0) {
+  if (pokemonOponents.size() > 0) {
     // Si la cola esta vacia, descolamos el primer elemento
-    let oponent = pokemonOponents.shift();
+    let oponent = pokemonOponents.dequeue();
 
     const oponentPokemon = await fetchPokemon(oponent.url);
     const oponentStats = calculateTotalStats(oponentPokemon);
@@ -114,7 +152,7 @@ async function startBattles(pokemonName) {
     section.appendChild(div);
     section.appendChild(strong);
     console.log(pokemonOponents);
-    if (pokemonOponents.length !== 0) {
+    if (pokemonOponents.size() !== 0) {
       button.style = 'margin-top: 1rem';
       section.appendChild(button);
     } else {
