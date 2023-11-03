@@ -28,7 +28,7 @@ class Queue {
 
   dequeue() {
     if (this.items.length === 0) return 'No hay elementos en la cola';
-    return this.items.shifts();
+    return this.items.shift();
   }
 
   size() {
@@ -38,6 +38,7 @@ class Queue {
 
 let url = 'https://pokeapi.co/api/v2/pokemon?offset=0&limit=150';
 let pokemonList = [];
+let battleHistory = new Stack();
 let pokemonOponents = new Queue();
 let pokemonName = '';
 let pokemonURL = '';
@@ -83,12 +84,11 @@ async function selectPokemon() {
 
 function selectOponents() {
   pokemonOponents = new Queue();
-  for (let i = 1; i <= 3; i++) {
+  for (let i = 1; i <= 5; i++) {
     let randPokemon = Math.floor(Math.random() * 150);
     // Metemos al final de la cola de rivales 3 pokemones al azar de la lista
     pokemonOponents.enqueue(pokemonList[randPokemon]);
   }
-  console.log(pokemonOponents);
 }
 
 function getPokemon() {
@@ -114,10 +114,6 @@ async function startBattles(pokemonName) {
     const selectedPokemon = await fetchPokemon(pokemonURL);
     const selectedStats = calculateTotalStats(selectedPokemon);
 
-    console.log(selectedStats);
-    console.log(oponentStats);
-    console.log();
-
     winner =
       selectedStats > oponentStats ? selectedPokemon.name : oponentPokemon.name;
 
@@ -137,9 +133,13 @@ async function startBattles(pokemonName) {
         ? '<ins>Ganador: ' + capitalizeFirstLetter(winner) + '</ins>'
         : '<del>Ganador: ' + capitalizeFirstLetter(winner) + '</del>';
 
-    let button = document.createElement('button');
-    button.innerHTML = 'Siguiente batalla';
-    button.className = 'contrast';
+    let nextButton = document.createElement('button');
+    nextButton.innerHTML = 'Siguiente batalla';
+    nextButton.className = 'contrast';
+
+    let lastButton = document.createElement('button');
+    lastButton.innerHTML = 'Ver ultimo resultado';
+    lastButton.className = 'contrast';
 
     let div = document.createElement('div');
     div.className = 'versus';
@@ -151,22 +151,31 @@ async function startBattles(pokemonName) {
     section.appendChild(title);
     section.appendChild(div);
     section.appendChild(strong);
-    console.log(pokemonOponents);
     if (pokemonOponents.size() !== 0) {
-      button.style = 'margin-top: 1rem';
-      section.appendChild(button);
+      nextButton.style = 'margin-top: 1rem';
+      section.appendChild(nextButton);
     } else {
-      button.innerHTML = 'Volver a jugar';
-      button.style = 'margin-top: 1rem';
-      section.appendChild(button);
-      button.addEventListener('click', () => {
+      nextButton.innerHTML = 'Volver a jugar';
+      nextButton.style = 'margin-top: 1rem';
+      section.appendChild(nextButton);
+      nextButton.addEventListener('click', () => {
         location.reload();
       });
     }
+    if (battleHistory.size() > 0) {
+      section.appendChild(lastButton);
+    }
 
-    button.addEventListener('click', () => {
+    nextButton.onclick = () => {
+      battleHistory.push(strong.innerHTML);
       startBattles(pokemonName);
-    });
+    };
+    lastButton.onclick = () => {
+      let prevStrong = document.createElement('strong');
+      prevStrong.innerHTML = battleHistory.pop(); 
+      section.append(prevStrong);
+      section.removeChild(lastButton);
+    };
   }
 }
 
